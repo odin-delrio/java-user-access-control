@@ -19,11 +19,6 @@ package User.Domain.Model.User;
  *
  * @author odin.delrio
  */
-public interface UserRepository 
-{
-    public User userOfName(String name) throws UserNotFoundException;
-    
-    public void persist(User user) throws UserAlreadyExistsException;
-    
-    public UserId nextIdentity();
+public class UserAlreadyExistsException extends Exception
+{    
 }

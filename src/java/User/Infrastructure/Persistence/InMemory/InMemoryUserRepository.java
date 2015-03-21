@@ -16,8 +16,11 @@
 package User.Infrastructure.Persistence.InMemory;
 
 import User.Domain.Model.User.User;
+import User.Domain.Model.User.UserAlreadyExistsException;
 import User.Domain.Model.User.UserId;
+import User.Domain.Model.User.UserNotFoundException;
 import User.Domain.Model.User.UserRepository;
+import java.util.HashMap;
 
 /**
  *
@@ -25,17 +28,26 @@ import User.Domain.Model.User.UserRepository;
  */
 public class InMemoryUserRepository implements UserRepository
 {
-
+    private final HashMap<String, User> users = new HashMap<>();
+    
     @Override
-    public User userOfName(String name) 
+    public User userOfName(String name) throws UserNotFoundException 
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (!this.users.containsKey(name)) {
+            throw new UserNotFoundException();
+        }
+        
+        return users.get(name);
     }
 
     @Override
-    public void persist(User user)
+    public void persist(User user) throws UserAlreadyExistsException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.users.containsKey(user.name())) {
+            throw new UserAlreadyExistsException();
+        }
+        
+        this.users.put(user.name(), user);
     }
 
     @Override
