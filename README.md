@@ -29,11 +29,6 @@ Tests implemented trying to test behaviour, not the final implementation. Used t
 Preserving the unitary tests, mocking the behaviour of the objects that are not part of the test cases.
 
 ```java
-    /**
-     * 
-     * @throws UserNotFoundException
-     * @throws UnableToHashPasswordException 
-     */
     @Test
     public void testAuthenitcateWithExistingUserButWrongPassword()
     {
