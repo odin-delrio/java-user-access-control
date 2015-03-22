@@ -51,6 +51,11 @@ public class User
         return this.roles;
     }
 
+    public boolean hasRole(UserRole role)
+    {
+        return this.roles.contains(role);
+    }
+    
     public User setId(UserId id)
     {
         this.id = id;

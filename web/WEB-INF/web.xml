@@ -27,9 +27,37 @@
         <filter-name>AuthenticationRequiredFilter</filter-name>
         <filter-class>Bundle.UserAccess.Servlets.Filter.AuthenticationRequiredFilter</filter-class>
     </filter>
+
     <filter-mapping>
         <filter-name>AuthenticationRequiredFilter</filter-name>
         <url-pattern>/private/*</url-pattern>
     </filter-mapping>
+
+    <filter>
+        <filter-name>RoleRequiredFilter</filter-name>
+        <filter-class>Bundle.UserAccess.Servlets.Filter.RoleRequiredFilter</filter-class>
+        <init-param>
+            <param-name>page-1.jsp</param-name>
+            <param-value>PAGE_1_VIEWER</param-value>
+        </init-param>
+        <init-param>
+            <param-name>page-2.jsp</param-name>
+            <param-value>PAGE_2_VIEWER</param-value>
+        </init-param>
+        <init-param>
+            <param-name>page-3.jsp</param-name>
+            <param-value>PAGE_3_VIEWER</param-value>
+        </init-param>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>RoleRequiredFilter</filter-name>
+        <url-pattern>/private/*</url-pattern>
+    </filter-mapping>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error/forbidden.jsp</location>
+    </error-page>
 
 </web-app>

@@ -118,25 +118,25 @@ public class Login extends HttpServlet
                 new User()
                     .setName("user1")
                     .setPassword(md5PasswordHasher.hash("1111".toCharArray()))
-                    .setRoles(new HashSet<>(Arrays.asList(UserRole.PAGE_1_ALLOWED)))
+                    .setRoles(new HashSet<>(Arrays.asList(UserRole.PAGE_1_VIEWER)))
             );
             userRepository.persist(
                 new User()
                     .setName("user2")
                     .setPassword(md5PasswordHasher.hash("2222".toCharArray()))
-                    .setRoles(new HashSet<>(Arrays.asList(UserRole.PAGE_2_ALLOWED)))
+                    .setRoles(new HashSet<>(Arrays.asList(UserRole.PAGE_2_VIEWER)))
             );
             userRepository.persist(
                 new User()
                     .setName("user3")
                     .setPassword(md5PasswordHasher.hash("3333".toCharArray()))
-                    .setRoles(new HashSet<>(Arrays.asList(UserRole.PAGE_3_ALLOWED)))
+                    .setRoles(new HashSet<>(Arrays.asList(UserRole.PAGE_3_VIEWER)))
             );
             userRepository.persist(
                 new User()
                     .setName("user4")
                     .setPassword(md5PasswordHasher.hash("4444".toCharArray()))
-                    .setRoles(new HashSet<>(Arrays.asList(UserRole.PAGE_1_ALLOWED, UserRole.PAGE_2_ALLOWED)))
+                    .setRoles(new HashSet<>(Arrays.asList(UserRole.PAGE_1_VIEWER, UserRole.PAGE_2_VIEWER)))
             );
         } catch (UserAlreadyExistsException | UnableToHashPasswordException exception) {
             // This a fixture creation, these errors cannot be produced.

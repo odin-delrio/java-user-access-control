@@ -21,8 +21,27 @@ package User.Domain.Model.User;
  */
 public enum UserRole 
 {
-    ROOT,
-    PAGE_1_ALLOWED,
-    PAGE_2_ALLOWED,
-    PAGE_3_ALLOWED
+    ROOT ("ROOT"),
+    PAGE_1_VIEWER ("PAGE_1_VIEWER"),
+    PAGE_2_VIEWER ("PAGE_2_VIEWER"),
+    PAGE_3_VIEWER ("PAGE_3_VIEWER");
+    
+    private final String name;
+    
+    private UserRole(String name)
+    {
+        this.name = name;
+    }
+
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public boolean equals(String name) 
+    {
+        return null == name
+            ? false
+            : name.equals(this.name);
+    }
 }
