@@ -43,9 +43,9 @@
             <h1>Hello <%= ((User)session.getAttribute("user")).name() %></h1>
           
             <ul>
-                <li><a href="/web/page-1.jsp">Page 1</a></li>
-                <li><a href="/web/page-2.jsp">Page 2</a></li>
-                <li><a href="/web/page-3.jsp">Page 3</a></li>
+                <li><a href="private/page-1.jsp">Page 1</a></li>
+                <li><a href="private/page-2.jsp">Page 2</a></li>
+                <li><a href="private/page-3.jsp">Page 3</a></li>
             </ul>
         </div> <!-- /container -->
 

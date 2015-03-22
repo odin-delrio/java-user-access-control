@@ -40,6 +40,6 @@ public class Logout extends HttpServlet
             throws ServletException, IOException 
     {
         request.getSession().invalidate();
-        response.sendRedirect("/web/login.html");
+        response.sendRedirect("/java-user-access-control/login.html");
     }
 }

@@ -52,10 +52,10 @@ public class Login extends HttpServlet
     {
         response.setContentType("text/html;charset=UTF-8");
         
-        if (isUserAlreadyLogged(request)) {
-            response.sendRedirect("/web/logged-main.jsp");
+      if (isUserAlreadyLogged(request)) {
+            response.sendRedirect("logged-main.jsp");
         } else {
-            response.sendRedirect("/web/login.html");
+            response.sendRedirect("login.html");
         }
     }
 
@@ -88,9 +88,9 @@ public class Login extends HttpServlet
         }
         
         if (areValidCredentials) {
-            response.sendRedirect("/web/logged-main.jsp");
+            response.sendRedirect("logged-main.jsp");
         } else {
-            response.sendRedirect("/web/login.html");
+            response.sendRedirect("login.html");
         }
     }
     
