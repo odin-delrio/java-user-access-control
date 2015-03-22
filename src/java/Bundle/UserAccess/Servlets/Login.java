@@ -15,18 +15,14 @@
  */
 package Bundle.UserAccess.Servlets;
 
+import Bundle.UserAccess.Fixture.CreateInMemoryUserRepositoryFacade;
 import User.Domain.Model.Authentifier;
 import User.Domain.Model.Hasher.Md5PasswordHasher;
 import User.Domain.Model.Hasher.UnableToHashPasswordException;
 import User.Domain.Model.User.User;
-import User.Domain.Model.User.UserAlreadyExistsException;
 import User.Domain.Model.User.UserNotFoundException;
 import User.Domain.Model.User.UserRepository;
-import User.Domain.Model.User.UserRole;
-import User.Infrastructure.Persistence.InMemory.InMemoryUserRepository;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -72,7 +68,7 @@ public class Login extends HttpServlet
         throws ServletException, IOException
     {
         response.setContentType("text/html;charset=UTF-8");
-        UserRepository userRepository = this.createUserRepositoryWithTestUsers();
+        UserRepository userRepository = CreateInMemoryUserRepositoryFacade.createUserRepository();
         Authentifier authentifier = new Authentifier(userRepository, new Md5PasswordHasher());
         boolean areValidCredentials = false;
         String username = request.getParameter("username");
@@ -97,52 +93,6 @@ public class Login extends HttpServlet
     private boolean isUserAlreadyLogged(HttpServletRequest request)
     {
         return null != request.getSession(false) && null != request.getSession(false).getAttribute("user");
-    }
-    
-    /**
-     * Creates the userRepository and save some test data.
-     *
-     * Note that the passwords are stored hashed, as a real application should do.
-     * 
-     * @return UserRepository
-     * @throws UserAlreadyExistsException
-     * @throws UnableToHashPasswordException 
-     */
-    private UserRepository createUserRepositoryWithTestUsers()
-    {
-        UserRepository userRepository = new InMemoryUserRepository();
-        Md5PasswordHasher md5PasswordHasher = new Md5PasswordHasher();
-        
-        try {
-            userRepository.persist(
-                new User()
-                    .setName("user1")
-                    .setPassword(md5PasswordHasher.hash("1111".toCharArray()))
-                    .setRoles(new HashSet<>(Arrays.asList(UserRole.PAGE_1_VIEWER)))
-            );
-            userRepository.persist(
-                new User()
-                    .setName("user2")
-                    .setPassword(md5PasswordHasher.hash("2222".toCharArray()))
-                    .setRoles(new HashSet<>(Arrays.asList(UserRole.PAGE_2_VIEWER)))
-            );
-            userRepository.persist(
-                new User()
-                    .setName("user3")
-                    .setPassword(md5PasswordHasher.hash("3333".toCharArray()))
-                    .setRoles(new HashSet<>(Arrays.asList(UserRole.PAGE_3_VIEWER)))
-            );
-            userRepository.persist(
-                new User()
-                    .setName("user4")
-                    .setPassword(md5PasswordHasher.hash("4444".toCharArray()))
-                    .setRoles(new HashSet<>(Arrays.asList(UserRole.PAGE_1_VIEWER, UserRole.PAGE_2_VIEWER)))
-            );
-        } catch (UserAlreadyExistsException | UnableToHashPasswordException exception) {
-            // This a fixture creation, these errors cannot be produced.
-        }
-
-        return userRepository;
     }
     
     /**

@@ -15,7 +15,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">User acces control</a>
+      <a class="navbar-brand" href="javascript:void(0)">User access control</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
