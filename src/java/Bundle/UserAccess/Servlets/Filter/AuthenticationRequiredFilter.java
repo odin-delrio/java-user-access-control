@@ -40,8 +40,10 @@ public class AuthenticationRequiredFilter implements Filter
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException 
     {
-        if (null == ((HttpServletRequest)request).getSession(false)) {
-            ((HttpServletResponse)response).sendRedirect("/java-user-access-control/login.html");
+        HttpServletRequest httpServletRequest = (HttpServletRequest)request;
+        
+        if (null == httpServletRequest.getSession(false)) {
+            ((HttpServletResponse)response).sendRedirect(httpServletRequest.getContextPath() + "/login.html");
         } else {
             chain.doFilter(request, response);
         }

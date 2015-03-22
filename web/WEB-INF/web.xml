@@ -33,6 +33,11 @@
         <url-pattern>/private/*</url-pattern>
     </filter-mapping>
 
+    <filter-mapping>
+        <filter-name>AuthenticationRequiredFilter</filter-name>
+        <url-pattern>/logged-main.jsp</url-pattern>
+    </filter-mapping>
+
     <filter>
         <filter-name>RoleRequiredFilter</filter-name>
         <filter-class>Bundle.UserAccess.Servlets.Filter.RoleRequiredFilter</filter-class>
