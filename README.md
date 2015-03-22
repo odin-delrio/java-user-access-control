@@ -30,7 +30,7 @@ Preserving the unitary tests, mocking the behaviour of the objects that are not 
 
 ```java
     @Test
-    public void testAuthenitcateWithExistingUserButWrongPassword()
+    public void testAuthenticateWithExistingUserButWrongPassword()
     {
         givenAnAuthentifier();
         whenTheUserRepositoryHasAnUserForName();
