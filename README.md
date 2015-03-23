@@ -40,6 +40,12 @@ With this design, it would be easy to switch the repository's final storage meth
 
 A facade was created to insert users into the **InMemoryUserRepository** in order to make a real authentication process, including the password hashing (with a SALT) and then, storing the User in session storage.
 
+For the roles, a *Java Enum* was used, overriding the constructor to easy check the value with an ordinary String (Roles per page were defined in the web.xml config file).
+
+MD5 hashing encapsulation
+--------
+This is not PHP and we haven't the **md5()** function... so, this non-trivial operation was encapsulated in the **Md5Hasher** ([test](https://github.com/odin-delrio/java-user-access-control/blob/master/test/Library/Hashing/Md5HasherTest.java) created for this class) and used in the **Md5PasswordHasher** (this class enforce the hashing operation with a salt).
+
 Resources access security checks
 --------
 Practising the user role management without using the server options (Glassfish provides a set of rules to manage the access to the web resources).
