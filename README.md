@@ -11,7 +11,7 @@ Technical stuff
 
 Tests written focused on behaviour
 --------
-Tests implemented trying to test behaviour, not the final implementation. Using the typicall *acceptance tests* syntax, like [Gherkin syntax](https://github.com/cucumber/cucumber/wiki/Gherkin).
+Tests implemented trying to test behaviour, not the final implementation. Using the typicall *acceptance tests* syntax ([Gherkin syntax](https://github.com/cucumber/cucumber/wiki/Gherkin)).
 
 Preserving the unitary tests, mocking the behaviour of the objects that are not part of the test cases.
 Here is an example of the [test for the Authentifier class](https://github.com/odin-delrio/java-user-access-control/blob/master/test/User/Domain/Model/AuthentifierTest.java).
