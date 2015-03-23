@@ -28,6 +28,8 @@ Here is an example of the [test for the Authentifier class](https://github.com/o
 ```
 With this syntax, all the entire test method is readable and maintainable.
 
+![Tests passing](/doc/screenshots/tests-passing.png?raw=true "Tests passing")
+
 Domain logic implementation
 --------
 Using hexagonal architecture to implement the User model and related objects.
@@ -42,3 +44,16 @@ Practising the user role management without using the server options (Glassfish 
 Using the Servlet filters instead for denying access to private sections. Two different filters were implemented:
 * one for denying access for any unauthenticated user, if not, the user will be redirected to the login page.
 * other one to check if the logged user has the needed role to access the requested resource, if not, the user will get the "forbidden" error page (with the properly 403 HTTP status code).
+
+![403 code sent](/doc/screenshots/chrome-console-showing-403.png?raw=true "403 code sent")
+
+Some screenshots
+--------
+
+![Sign in page](/doc/screenshots/sign-in-page.png?raw=true "Sign in page")
+
+![Main page](/doc/screenshots/main-page.png?raw=true "Main page")
+
+![Private page](/doc/screenshots/private-page-2.png?raw=true "Private page")
+
+![Forbidden message](/doc/screenshots/forbidden-message.png?raw=true "Forbbiden message")
