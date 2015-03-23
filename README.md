@@ -8,6 +8,7 @@ Technical stuff
 * Mocking library [Mockito 1.9.5](http://mvnrepository.com/artifact/org.mockito/mockito-all/1.9.5).
 * Developed with JVM 1.8.
 * GlassFish Server 4.1.
+* Twitter bootstrap for look and feel.
 
 Tests written focused on behaviour
 --------
