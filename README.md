@@ -113,6 +113,15 @@ Error page declaration and demostration:
 ```
 ![403 code sent](/doc/screenshots/chrome-console-showing-403.png?raw=true "403 code sent")
 
+Tests users created by the [facade](https://github.com/odin-delrio/java-user-access-control/blob/master/src/java/Bundle/UserAccess/Fixture/CreateInMemoryUserRepositoryFacade.java) that can be used to log in in the application:
+
+username | roles | password
+----- | ------------- | ----
+user1 | PAGE_1_VIEWER | 1111
+user2 | PAGE_2_VIEWER | 2222
+user3 | PAGE_3_VIEWER | 3333
+user4 | PAGE_1_VIEWER, PAGE_2_VIEWER | 4444
+
 Some screenshots
 --------
 
