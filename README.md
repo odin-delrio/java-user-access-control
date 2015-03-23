@@ -35,6 +35,8 @@ Domain logic implementation
 --------
 Using hexagonal architecture to implement the User model and related objects.
 
+The domain models design is using the concept of Dependency Injection, but, for this example, the construction of objects is done in the Servlets, in a real world, these constructions should be avoided by using a *Dependency injection container* (usually the Spring DIC).
+
 An interface was defined for the **UserRepository** and implemented in the **InMemoryUserRepository** for this example.
 With this design, it would be easy to switch the repository's final storage method (MySql, Mongo... if the interface is satisfied it won't be a problem).
 
@@ -50,10 +52,65 @@ Resources access security checks
 --------
 Practising the user role management without using the server options (Glassfish provides a set of rules to manage the access to the web resources).
 
-Using the Servlet filters instead for denying access to private sections. Two different filters were implemented:
-* one for denying access for any unauthenticated user, if not, the user will be redirected to the login page.
-* other one to check if the logged user has the needed role to access the requested resource, if not, the user will get the "forbidden" error page (with the properly 403 HTTP status code).
+Using the Servlet filters instead for denying access to private sections. Two different filters were implemented and configured in the [web.xml file](https://github.com/odin-delrio/java-user-access-control/blob/master/web/WEB-INF/web.xml).
 
+* The [AuthenticationRequiredFilter](https://github.com/odin-delrio/java-user-access-control/blob/master/src/java/Bundle/UserAccess/Servlets/Filter/AuthenticationRequiredFilter.java) for denying access for any unauthenticated user, if not, the user will be redirected to the login page.
+```xml
+    <filter>
+        <filter-name>AuthenticationRequiredFilter</filter-name>
+        <filter-class>Bundle.UserAccess.Servlets.Filter.AuthenticationRequiredFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AuthenticationRequiredFilter</filter-name>
+        <url-pattern>/private/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>AuthenticationRequiredFilter</filter-name>
+        <url-pattern>/logged-main.jsp</url-pattern>
+    </filter-mapping>
+```
+* Other one, the [RoleRequiredFilter](https://github.com/odin-delrio/java-user-access-control/blob/master/src/java/Bundle/UserAccess/Servlets/Filter/RoleRequiredFilter.java), to check if the logged user has the needed role to access the requested resource, if not, the user will get the "forbidden" error page (with the properly 403 HTTP status code).
+````xml
+    <filter>
+        <filter-name>RoleRequiredFilter</filter-name>
+        <filter-class>Bundle.UserAccess.Servlets.Filter.RoleRequiredFilter</filter-class>
+        <init-param>
+            <param-name>page-1.jsp</param-name>
+            <param-value>PAGE_1_VIEWER</param-value>
+        </init-param>
+        <init-param>
+            <param-name>page-2.jsp</param-name>
+            <param-value>PAGE_2_VIEWER</param-value>
+        </init-param>
+        <init-param>
+            <param-name>page-3.jsp</param-name>
+            <param-value>PAGE_3_VIEWER</param-value>
+        </init-param>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>RoleRequiredFilter</filter-name>
+        <url-pattern>/private/*</url-pattern>
+    </filter-mapping>
+````
+
+Error page declaration and demostration:
+```java
+    // RoleRequiredFilter class context 
+    if (null == user || !user.hasRole(UserRole.valueOf(roleRequired))) {
+        HttpServletResponse httpServletResponse = (HttpServletResponse)response;
+        httpServletResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
+    }
+```
+
+```xml
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error/forbidden.jsp</location>
+    </error-page>
+```
 ![403 code sent](/doc/screenshots/chrome-console-showing-403.png?raw=true "403 code sent")
 
 Some screenshots
