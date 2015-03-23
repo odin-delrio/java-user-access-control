@@ -41,4 +41,4 @@ Practising the user role management without using the server options (Glassfish 
 
 Using the Servlet filters instead for denying access to private sections. Two different filters were implemented:
 * one for denying access for any unauthenticated user, if not, the user will be redirected to the login page.
-* other one to check if the logged user has the needed role to access the requested resource, if not, the user will get the "forbidden" error page.
+* other one to check if the logged user has the needed role to access the requested resource, if not, the user will get the "forbidden" error page (with the properly 403 HTTP status code).
