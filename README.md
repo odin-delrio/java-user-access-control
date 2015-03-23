@@ -123,3 +123,8 @@ Some screenshots
 ![Private page](/doc/screenshots/private-page-2.png?raw=true "Private page")
 
 ![Forbidden message](/doc/screenshots/forbidden-message.png?raw=true "Forbbiden message")
+
+
+TODO
+-------
+* Convert into **maven** project in order to install the dependencies automatically.
