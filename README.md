@@ -8,7 +8,7 @@ Technical stuff
 * Mocking library [Mockito 1.9.5](http://mvnrepository.com/artifact/org.mockito/mockito-all/1.9.5).
 * Developed with JVM 1.8.
 * GlassFish Server 4.1.
-* Twitter bootstrap for look and feel.
+* Twitter bootstrap for the look and feel.
 
 Tests written focused on behaviour
 --------
@@ -37,6 +37,8 @@ Using hexagonal architecture to implement the User model and related objects.
 
 An interface was defined for the **UserRepository** and implemented in the **InMemoryUserRepository** for this example.
 With this design, it would be easy to switch the repository's final storage method (MySql, Mongo... if the interface is satisfied it won't be a problem).
+
+A facade was created to insert users into the **InMemoryUserRepository** in order to make a real authentication process, including the password hashing (with a SALT) and then, storing the User in session storage.
 
 Resources access security checks
 --------
