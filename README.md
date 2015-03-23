@@ -9,24 +9,12 @@ Technical stuff
 * Developed with JVM 1.8.
 * GlassFish Server 4.1.
 
-Resources access security checks
---------
-Practised the user role management without using the server options (Glassfish provides a set o rules to manage the access to the web resources).
-
-Used the Servlet filters instead for deny access to private sections. Two different filters were implemented, one for deny access for any unauthenticated user and other for decide if the logged user has the needed role to access to the requested resource.
-
-Domain logic implementation
---------
-Used hexagonal architecture to implement the User model and related objects.
-
-An interface were defined to the **UserRepository** and implemented an **InMemoryUserRepository** for this example.
-With this design, it would be easy to switch the repository final storage method (MySql, Mongo... if the interface is satisfied it won't be a problem).
-
 Tests wroten focused on behaviour
 --------
 Tests implemented trying to test behaviour, not the final implementation. Used the typicall *acceptance tests* syntax, like [Gherkin syntax](https://github.com/cucumber/cucumber/wiki/Gherkin).
 
 Preserving the unitary tests, mocking the behaviour of the objects that are not part of the test cases.
+Here an example of the [test for the Authentifier class](https://github.com/odin-delrio/java-user-access-control/blob/master/test/User/Domain/Model/AuthentifierTest.java).
 
 ```java
     @Test
@@ -39,3 +27,16 @@ Preserving the unitary tests, mocking the behaviour of the objects that are not 
     }
 ```
 With this syntax, all the entire test method is readable and maintainable.
+
+Domain logic implementation
+--------
+Used hexagonal architecture to implement the User model and related objects.
+
+An interface were defined to the **UserRepository** and implemented an **InMemoryUserRepository** for this example.
+With this design, it would be easy to switch the repository final storage method (MySql, Mongo... if the interface is satisfied it won't be a problem).
+
+Resources access security checks
+--------
+Practised the user role management without using the server options (Glassfish provides a set o rules to manage the access to the web resources).
+
+Used the Servlet filters instead for deny access to private sections. Two different filters were implemented, one for deny access for any unauthenticated user and other for decide if the logged user has the needed role to access to the requested resource.
